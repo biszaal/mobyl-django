@@ -1,74 +1,182 @@
 {% extends 'main.html' %} {% block content %}
 
-<main class="login-root">
+<main class="my-12">
   {% if page == 'login' %}
+  <section class="h-full w-full">
+    <div class="align-center justify-center text-gray-800">
+      <div
+        class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap"
+      >
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="mb-6">
+            <label>Email address</label>
+            <input
+              type="text"
+              autofocus
+              class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </div>
 
-  <div
-    class="box-root padding-top--24 flex-flex flex-direction--column"
-    style="flex-grow: 1; z-index: 9"
-  >
-    <div
-      class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center"
-    >
-      <h1>Mobyl</h1>
-    </div>
-    <div class="formbg-outer">
-      <div class="formbg">
-        <div class="formbg-inner padding-horizontal--48">
-          <span class="padding-bottom--15">Sign in to Your Account</span>
-          <form id="stripe-login" method="POST" action="">
-            {% csrf_token %}
+          <div class="mb-6">
+            <label>Password</label>
+            <input
+              type="password"
+              class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </div>
 
-            <div class="field padding-bottom--24">
-              <label for="username">Username</label>
-              <input type="text" name="username" />
+          <div class="flex-col justify-between items-center mb-6">
+            <div class="form-group form-check">
+              <input
+                type="checkbox"
+                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                id="exampleCheck2"
+              />
+              <label
+                class="form-check-label inline-block text-gray-800"
+                for="exampleCheck2"
+                >Remember me</label
+              >
             </div>
-            <div class="field padding-bottom--24">
-              <div class="grid--50-50">
-                <label for="password">Password</label>
-                <div class="reset-pass">
-                  <a href="#">Forgot your password?</a>
-                </div>
-              </div>
-              <input type="password" name="password" />
-            </div>
-            <div
-              class="field field-checkbox padding-bottom--24 flex-flex align-center"
+            <a href="#!" class="text-gray-800">Forgot password?</a>
+          </div>
+
+          <div class="text-center lg:text-left">
+            <button
+              type="submit"
+              name="submit"
+              class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             >
-              <label for="checkbox">
-                <input type="checkbox" name="checkbox" /> Remember me
-              </label>
-            </div>
-            <div class="field padding-bottom--24">
-              <input type="submit" name="submit" value="Continue" />
-            </div>
-
-            <div class="field">
-              <a class="ssolink" href="#">Login with Google</a>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="footer-link padding-top--24">
-        <span
-          >Don't have an account?
-          <a href="{% url 'register' %}">Sign up</a></span
-        >
+              Login
+            </button>
+            <p class="text-sm font-semibold mt-2 pt-1 mb-0">
+              Don't have an account?
+              <a
+                href="{% url 'register' %}"
+                class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                >Register</a
+              >
+            </p>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
+  </section>
 
   {% else %}
+  <section class="h-full w-full">
+    <div class="align-center justify-center text-gray-800">
+      <div
+        class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap"
+      >
+        <form method="POST" action="">
+          {% csrf_token %}
 
+          <div class="flex space-x-3 flex-row">
+            <div class="mb-6">
+              <label>First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                maxlength="150"
+                autofocus
+                required
+                id="id_first_name"
+                class="form-control block w-48 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              />
+            </div>
+            <div class="mb-6">
+              <label>Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                maxlength="150"
+                required
+                id="id_last_name"
+                class="form-control block w-48 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              />
+            </div>
+          </div>
+          <div class="mb-6">
+            <label>Username</label>
+            <input
+              type="text"
+              name="username"
+              maxlength="150"
+              autocapitalize="none"
+              autocomplete="username"
+              required
+              id="id_username"
+              class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </div>
+
+          <div class="mb-6">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              maxlength="150"
+              autocapitalize="none"
+              autocomplete="email"
+              required
+              id="id_email"
+              class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </div>
+
+          <div class="mb-6">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password1"
+              autocomplete="new-password"
+              required
+              id="id_password1"
+              class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </div>
+
+          <div class="mb-6">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="password2"
+              autocomplete="new-password"
+              required
+              id="id_password2"
+              class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            />
+          </div>
+
+          <div class="text-center lg:text-left">
+            <button
+              type="submit"
+              name="submit"
+              class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Register
+            </button>
+            <p class="text-sm font-semibold mt-2 pt-1 mb-0">
+              Already have an account?
+              <a
+                href="{% url 'login' %}"
+                class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                >Login</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  {% comment %}
   <div
     class="box-root padding-top--24 flex-flex flex-direction--column"
     style="flex-grow: 1; z-index: 9"
   >
-    <div
-      class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center"
-    >
-      <h1>Mobyl</h1>
-    </div>
     <div class="formbg-outer">
       <div class="formbg">
         <div class="formbg-inner padding-horizontal--48">
@@ -98,7 +206,7 @@
       </div>
     </div>
   </div>
-  {% endif %}
+  {% endcomment %} {% endif %}
 </main>
 
 {% endblock content %}

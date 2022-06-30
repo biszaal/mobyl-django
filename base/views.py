@@ -51,15 +51,22 @@ def registerPage(request):
         return redirect('home')
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
+        firstName = request.POST.get('firstName')
+        lastName = request.POST.get('lastName')
+        username = request.POST.get('username').lower()
+        email = request.POST.get('email').lower()
+        password = request.POST.get('password1')
+        confirmPassword = request.POST.get('password2')
+
+        if password == confirmPassword:
+            user = User.objects.create_user(username, email, password)
+            user.first_name = firstName
+            user.last_name = lastName
             user.save()
             login(request, user)
             return redirect('home')
 
         else:
-            messages.error(request, 'An error occurred during registration.')
+            messages.error('Passwords does not match')
 
     return render(request, 'base/login.html', {'form': form})
