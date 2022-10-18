@@ -1,4 +1,5 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} {% block title %} Mobyl - Login {% endblock title %}
+{% block content %}
 
 <main class="my-12">
   {% if page == 'login' %}
@@ -10,8 +11,9 @@
         <form method="POST" action="">
           {% csrf_token %}
           <div class="mb-6">
-            <label>Email address</label>
+            <label>Username</label>
             <input
+              name="username"
               type="text"
               autofocus
               class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -21,6 +23,7 @@
           <div class="mb-6">
             <label>Password</label>
             <input
+              name="password"
               type="password"
               class="form-control block w-96 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
@@ -33,9 +36,7 @@
                 class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                 id="exampleCheck2"
               />
-              <label
-                class="form-check-label inline-block text-gray-800"
-                for="exampleCheck2"
+              <label class="form-check-label inline-block text-gray-800"
                 >Remember me</label
               >
             </div>
@@ -171,42 +172,7 @@
       </div>
     </div>
   </section>
-
-  {% comment %}
-  <div
-    class="box-root padding-top--24 flex-flex flex-direction--column"
-    style="flex-grow: 1; z-index: 9"
-  >
-    <div class="formbg-outer">
-      <div class="formbg">
-        <div class="formbg-inner padding-horizontal--48">
-          <span class="padding-bottom--15">Register an account</span>
-          <form id="stripe-login" method="POST" action="">
-            {% csrf_token %} {% for field in form %}
-            <div class="field padding-bottom--24">
-              <label for="fullname">{{field.label}}</label>
-              {{field}}
-            </div>
-            {% endfor %}
-            <div class="field padding-bottom--24">
-              <input type="submit" name="submit" value="Continue" />
-            </div>
-
-            <div class="field">
-              <a class="ssolink" href="#">Sign Up with Google</a>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="footer-link padding-top--24">
-        <span
-          >Already have an account?
-          <a href="{% url 'login' %}">Sign in</a></span
-        >
-      </div>
-    </div>
-  </div>
-  {% endcomment %} {% endif %}
+  {% endif %}
 </main>
 
 {% endblock content %}
